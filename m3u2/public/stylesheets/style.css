@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+footer {
+  background-color: #aaa;
+}
+
+h1, h2 {
+  font-family: 'Alfa Slab One', cursive;
+}
+
+.hero {
+  background: url(../images/header.jpg) no-repeat;
+  background-size: cover;
+  height: 50vh;
+  min-height: 600px;
+  color: white;
+}
+
+.conocenos{
+  background: url(../images/conocenos.jpg) no-repeat;
+  background-size: cover;
+  height: 50vh;
+  min-height: 600px;
+}
