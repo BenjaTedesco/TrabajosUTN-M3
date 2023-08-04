@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -12,6 +12,7 @@ footer {
 }
 
 h1, h2 {
+  margin-top: 1px;
   font-family: 'Alfa Slab One', cursive;
 }
 
@@ -19,13 +20,13 @@ h1, h2 {
   background: url(../images/header.jpg) no-repeat;
   background-size: cover;
   height: 50vh;
-  min-height: 600px;
+  min-height: 800px;
   color: white;
 }
 
 .conocenos{
-  background: url(../images/conocenos.jpg) no-repeat;
+  background: url(../images/cono.jpg) no-repeat;
   background-size: cover;
   height: 50vh;
-  min-height: 600px;
+  min-height: 1200px;
 }
