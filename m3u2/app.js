@@ -4,13 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var session = require('express-session');
+
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var novedadesRouter = require('./routes/novedades'); //novedades.js
-var nosotrosRouter = require('./routes/nosotros'); //nosotros.js
-var conocenosRouter = require('./routes/conocenos'); //conocenos.js
+//var usersRouter = require('./routes/users');
+//var novedadesRouter = require('./routes/novedades'); //novedades.js
+//var nosotrosRouter = require('./routes/nosotros'); //nosotros.js
+//var conocenosRouter = require('./routes/conocenos'); //conocenos.js
 
 var app = express();
 
@@ -24,11 +26,42 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/novedades', novedadesRouter);
-app.use('/nosotros', nosotrosRouter);
-app.use('/conocenos', conocenosRouter);
+app.use(session({
+  secret: 'CursoUTNBenjamin',
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.get('/', function (req, res){
+  var conocido = Boolean(req.session.nombre);
+
+  res.render('index', {
+    title: 'Sesiones en Express.js',
+    conocido: conocido,
+    nombre: req.session.nombre
+  });
+
+});
+
+app.post('/ingresar', function (req, res){
+
+  console.log(req.body.nombre);
+  if (req.body.nombre) {
+    req.session.nombre = req.body.nombre
+  }
+  res.redirect('/');
+});
+
+app.get('/salir', function (req, res){
+  req.session.destroy();
+  res.redirect('/');
+})
+
+//app.use('/', indexRouter);
+//app.use('/users', usersRouter);
+//app.use('/novedades', novedadesRouter);
+//app.use('/nosotros', nosotrosRouter);
+//app.use('/conocenos', conocenosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
